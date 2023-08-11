@@ -15,6 +15,10 @@ import logoAirbnb from '@/images/logos/airbnb.svg'
 import logoFacebook from '@/images/logos/facebook.svg'
 import logoPlanetaria from '@/images/logos/planetaria.svg'
 import logoStarbucks from '@/images/logos/starbucks.svg'
+import logoWFLK from '@/images/logos/wflk.png'
+import logoIndia from '@/images/logos/india.jpg'
+import logoCGQ from '@/images/logos/CGQ.jpg'
+import logoUQAC from '@/images/logos/UQAC.png'
 import image1 from '@/images/photos/image-1.jpg'
 import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/image-3.jpg'
@@ -99,7 +103,7 @@ function Article({ article }) {
 
 function SocialLink({ icon: Icon, ...props }) {
   return (
-    <Link className="group -m-1 p-1" {...props}>
+    <Link className="group -m-1 p-1" {...props} target="_blank">
       <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
     </Link>
   )
@@ -137,35 +141,32 @@ function Newsletter() {
 function Resume() {
   let resume = [
     {
-      company: 'Planetaria',
-      title: 'CEO',
-      logo: logoPlanetaria,
+      company: 'WFLK',
+      title: 'English Teacher',
+      logo: logoWFLK,
+      start: '2021',
+      end: '2023',
+    },
+    {
+      company: 'India',
+      title: 'Traveller',
+      logo: logoIndia,
       start: '2019',
-      end: {
-        label: 'Present',
-        dateTime: new Date().getFullYear(),
-      },
+      end: '2021',
     },
     {
-      company: 'Airbnb',
-      title: 'Product Designer',
-      logo: logoAirbnb,
-      start: '2014',
-      end: '2019',
+      company: 'Centre de Géomatique du Québec',
+      title: 'Web Developer Intern',
+      logo: logoCGQ,
+      start: '2018',
+      end: '2018',
     },
     {
-      company: 'Facebook',
-      title: 'iOS Software Engineer',
-      logo: logoFacebook,
-      start: '2011',
-      end: '2014',
-    },
-    {
-      company: 'Starbucks',
-      title: 'Shift Supervisor',
-      logo: logoStarbucks,
-      start: '2008',
-      end: '2011',
+      company: 'Université du Québec à Chicoutimi',
+      title: 'Computer science',
+      logo: logoUQAC,
+      start: '2016',
+      end: '2018',
     },
   ]
 
@@ -179,7 +180,12 @@ function Resume() {
         {resume.map((role, roleIndex) => (
           <li key={roleIndex} className="flex gap-4">
             <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-              <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
+              <Image
+                src={role.logo}
+                alt=""
+                className="h-7 w-7 rounded-2xl"
+                unoptimized
+              />
             </div>
             <dl className="flex flex-auto flex-wrap gap-x-2">
               <dt className="sr-only">Company</dt>
@@ -209,10 +215,12 @@ function Resume() {
           </li>
         ))}
       </ol>
-      <Button href="#" variant="secondary" className="group mt-6 w-full">
-        Download CV
-        <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
-      </Button>
+      <Link href="/Nicolas-Savard-resume-Francais.pdf " target="_blank">
+        <Button variant="secondary" className="group mt-6 w-full">
+          Download CV
+          <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
+        </Button>
+      </Link>
     </div>
   )
 }
@@ -255,10 +263,10 @@ export default async function Home() {
             Software developer
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I'm Nicolas Savard, a web developer with a strong passion for
+            I&#39;m Nicolas Savard, a web developer with a strong passion for
             innovation, based in Canada. With a background in teaching and a
-            degree in Computer Science, I've used my programming skills help me
-            in my professionnal and personnal life.
+            degree in Computer Science, I&#39;ve used my programming skills help
+            me in my professional and personal life.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
