@@ -126,9 +126,12 @@ const skills = [
 ]
 
 function Projects({ projects }) {
-  return projects.map((project) => {
+  return projects.map((project, index) => {
     return (
-      <div className=" flex flex-col rounded-2xl  border border-zinc-100 p-6 dark:border-zinc-700/40">
+      <div
+        key={index}
+        className=" flex flex-col rounded-2xl  border border-zinc-100 p-6 dark:border-zinc-700/40"
+      >
         <div className="mt-2 flex flex-row justify-center text-3xl  text-zinc-900 dark:text-zinc-200">
           {project.title}
         </div>
@@ -136,6 +139,7 @@ function Projects({ projects }) {
           <Image
             src={project.imageSrc}
             className="rounded-lg opacity-75"
+            alt={`Screenshot of ${project.title}`}
           ></Image>
         </div>
 
@@ -155,9 +159,10 @@ function Projects({ projects }) {
           </Button>
         </div>
         <div className="mt-3 flex flex-row flex-wrap justify-center">
-          {project.technologies.map((technology) => {
+          {project.technologies.map((technology, index) => {
             return (
               <Button
+                key={index}
                 variant="secondary"
                 className="mx-1 mt-2 cursor-default bg-teal-500 text-xs text-white hover:bg-teal-400"
               >
@@ -187,9 +192,10 @@ function Skills() {
         <span className="ml-3">Skills</span>
       </h2>
       <div className="mt-4">
-        {skills.map((skill) => {
+        {skills.map((skill, index) => {
           return (
             <Button
+              key={index}
               variant="secondary"
               className="mx-1 mt-2 cursor-default bg-teal-500 text-xs text-white hover:bg-teal-400"
             >
