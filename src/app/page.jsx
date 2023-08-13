@@ -3,31 +3,22 @@ import Link from 'next/link'
 import clsx from 'clsx'
 
 import { Button } from '@/components/Button'
-import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
-import {
-  GitHubIcon,
-  InstagramIcon,
-  LinkedInIcon,
-  TwitterIcon,
-} from '@/components/SocialIcons'
-import logoAirbnb from '@/images/logos/airbnb.svg'
-import logoFacebook from '@/images/logos/facebook.svg'
-import logoPlanetaria from '@/images/logos/planetaria.svg'
-import logoStarbucks from '@/images/logos/starbucks.svg'
+import { GitHubIcon, LinkedInIcon } from '@/components/SocialIcons'
 import logoWFLK from '@/images/logos/wflk.png'
 import logoIndia from '@/images/logos/india.jpg'
 import logoCGQ from '@/images/logos/CGQ.jpg'
 import logoUQAC from '@/images/logos/UQAC.png'
+import WFLKGame from '@/images/photos/WFLKGame.jpg'
+import BabySleep from '@/images/photos/BabySleep.jpg'
 import image1 from '@/images/photos/image-1.jpg'
 import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/image-3.jpg'
 import image4 from '@/images/photos/image-4.jpg'
 import image5 from '@/images/photos/image-5.jpg'
 import { formatDate } from '@/lib/formatDate'
-import { getAllArticles } from '@/lib/getAllArticles'
 
-function MailIcon(props) {
+function HammerIcon(props) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -39,12 +30,8 @@ function MailIcon(props) {
       {...props}
     >
       <path
-        d="M2.75 7.75a3 3 0 0 1 3-3h12.5a3 3 0 0 1 3 3v8.5a3 3 0 0 1-3 3H5.75a3 3 0 0 1-3-3v-8.5Z"
+        d="M18 2l1 5h-3l2-4zM9 6v3h3V6zM11 12H8v2h3v-2zM9 16h2v3H9zM15 22h-1v-3h-2v3h-1l1 2zM13 20h-1v-3h-2v3h-1l1 2zM7 22H6v-2H3v-1h3v-2h1zM3 16h3v-1H4v-3H3zM7 11V9H4V8h3V6h1zM20 8h-3v1h2v3h1zM22 12h-3v2h-1v3h1v2h-2v1h3zM16 15v-3h-3v1h2v2zM18 16h2v-2h-2zM11 15v2h-2v-2h2zM13 18v-2h-2v2h2zM16 18h-1v-3h-2v3h-1l1 2zM14 20h-1v-3h-2v3h-1l1 2z"
         className="fill-zinc-100 stroke-zinc-400 dark:fill-zinc-100/10 dark:stroke-zinc-500"
-      />
-      <path
-        d="m4 6 6.024 5.479a2.915 2.915 0 0 0 3.952 0L20 6"
-        className="stroke-zinc-400 dark:stroke-zinc-500"
       />
     </svg>
   )
@@ -86,19 +73,102 @@ function ArrowDownIcon(props) {
   )
 }
 
-function Article({ article }) {
-  return (
-    <Card as="article">
-      <Card.Title href={`/articles/${article.slug}`}>
-        {article.title}
-      </Card.Title>
-      <Card.Eyebrow as="time" dateTime={article.date} decorate>
-        {formatDate(article.date)}
-      </Card.Eyebrow>
-      <Card.Description>{article.description}</Card.Description>
-      <Card.Cta>Read article</Card.Cta>
-    </Card>
-  )
+const projects = [
+  {
+    title: 'Nicolas Classroom',
+    description: `I made this website to help my English students review their new vocabulary words.`,
+    imageSrc: WFLKGame,
+    technologies: [
+      'NextJS',
+      'TypeScript',
+      'TailwindCSS',
+      'tRPC',
+      'Supabase',
+      'React',
+    ],
+    github: 'https://github.com/nicssavard/nicolasClassroom',
+    url: 'https://nicolasclassroom.com',
+  },
+  {
+    title: 'BabySleep',
+    description: `I made this website to track my daugthers' sleep patterns. `,
+    imageSrc: BabySleep,
+    technologies: [
+      'NextJS',
+      'TypeScript',
+      'TailwindCSS',
+      'tRPC',
+      'PlanetScale',
+      'React',
+      'AWS S3',
+    ],
+    github: 'https://github.com/nicssavard/babylog',
+    url: 'https://babylog-gamma.vercel.app/',
+  },
+]
+
+const skills = [
+  'NextJS',
+  'TypeScript',
+  'TailwindCSS',
+  'tRPC',
+  'Supabase',
+  'React',
+  'AWS S3',
+  'MongoDB',
+  'NodeJS',
+  'Express',
+  'HTML',
+  'CSS',
+  'Git',
+  'Python',
+  'SQL',
+]
+
+function Projects({ projects }) {
+  return projects.map((project) => {
+    return (
+      <div className=" flex flex-col rounded-2xl  border border-zinc-100 p-6 dark:border-zinc-700/40">
+        <div className="mt-2 flex flex-row justify-center text-3xl  text-zinc-900 dark:text-zinc-200">
+          {project.title}
+        </div>
+        <div className="mt-3">
+          <Image
+            src={project.imageSrc}
+            className="rounded-lg opacity-75"
+          ></Image>
+        </div>
+
+        <div className="mt-4 flex flex-row justify-center text-lg text-zinc-600 dark:text-zinc-400">
+          {project.description}
+        </div>
+        <div className="mt-5 flex flex-row justify-center">
+          <Button href={project.url} target="_blank" className="mx-3 text-xl">
+            Website
+          </Button>
+          <Button
+            href={project.github}
+            target="_blank"
+            className="mx-3 text-xl"
+          >
+            GitHub
+          </Button>
+        </div>
+        <div className="mt-3 flex flex-row flex-wrap justify-center">
+          {project.technologies.map((technology) => {
+            return (
+              <Button
+                variant="secondary"
+                className="mx-1 mt-2 cursor-default bg-teal-500 text-xs text-white hover:bg-teal-400"
+              >
+                {technology}
+              </Button>
+            )
+          })}
+        </div>
+      </div>
+    )
+  })
 }
 
 function SocialLink({ icon: Icon, ...props }) {
@@ -109,32 +179,26 @@ function SocialLink({ icon: Icon, ...props }) {
   )
 }
 
-function Newsletter() {
+function Skills() {
   return (
-    <form
-      action="/thank-you"
-      className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40"
-    >
+    <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-        <MailIcon className="h-6 w-6 flex-none" />
-        <span className="ml-3">Stay up to date</span>
+        <HammerIcon className="h-6 w-6 flex-none" />
+        <span className="ml-3">Skills</span>
       </h2>
-      <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-        Get notified when I publish something new, and unsubscribe at any time.
-      </p>
-      <div className="mt-6 flex">
-        <input
-          type="email"
-          placeholder="Email address"
-          aria-label="Email address"
-          required
-          className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-teal-400 dark:focus:ring-teal-400/10 sm:text-sm"
-        />
-        <Button type="submit" className="ml-4 flex-none">
-          Join
-        </Button>
+      <div className="mt-4">
+        {skills.map((skill) => {
+          return (
+            <Button
+              variant="secondary"
+              className="mx-1 mt-2 cursor-default bg-teal-500 text-xs text-white hover:bg-teal-400"
+            >
+              {skill}
+            </Button>
+          )
+        })}
       </div>
-    </form>
+    </div>
   )
 }
 
@@ -253,7 +317,7 @@ function Photos() {
 }
 
 export default async function Home() {
-  let articles = (await getAllArticles()).slice(0, 4)
+  //let articles = (await getAllArticles()).slice(0, 4)
 
   return (
     <>
@@ -262,7 +326,7 @@ export default async function Home() {
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
             Software developer
           </h1>
-          <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
+          <p className="mt-6 text-xl text-zinc-600 dark:text-zinc-400">
             I&#39;m Nicolas Savard, a web developer with a strong passion for
             innovation, based in Canada. With a background in teaching and a
             degree in Computer Science, I&#39;ve used my programming skills help
@@ -282,16 +346,20 @@ export default async function Home() {
           </div>
         </div>
       </Container>
-      <Photos />
+      {/* <Photos /> */}
       <Container className="mt-24 md:mt-28">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
-          <div className="flex flex-col gap-16">
-            {articles.map((article) => (
-              <Article key={article.slug} article={article} />
-            ))}
+          <div className="flex flex-col gap-2">
+            <div className="flex flex-row justify-start">
+              <h1 className="mb-6 text-3xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-4xl">
+                My Projects
+              </h1>
+            </div>
+
+            <Projects projects={projects} />
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">
-            <Newsletter />
+            <Skills />
             <Resume />
           </div>
         </div>
