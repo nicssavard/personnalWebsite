@@ -186,7 +186,10 @@ function SocialLink({ icon: Icon, ...props }) {
 
 function Skills() {
   return (
-    <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
+    <div
+      id="skills"
+      className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40"
+    >
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
         <HammerIcon className="h-6 w-6 flex-none" />
         <span className="ml-3">Skills</span>
@@ -355,7 +358,7 @@ export default async function Home() {
       {/* <Photos /> */}
       <Container className="mt-24 md:mt-28">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
-          <div className="flex flex-col gap-2">
+          <div id="projects" className="flex flex-col gap-2">
             <div className="flex flex-row justify-start">
               <h1 className="mb-6 text-3xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-4xl">
                 My Projects
