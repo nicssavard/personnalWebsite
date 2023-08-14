@@ -16,7 +16,6 @@ import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/image-3.jpg'
 import image4 from '@/images/photos/image-4.jpg'
 import image5 from '@/images/photos/image-5.jpg'
-import { formatDate } from '@/lib/formatDate'
 
 function HammerIcon(props) {
   return (
@@ -108,21 +107,19 @@ const projects = [
 ]
 
 const skills = [
-  'NextJS',
-  'TypeScript',
-  'TailwindCSS',
-  'tRPC',
-  'Supabase',
   'React',
-  'AWS S3',
-  'MongoDB',
+  'NextJS',
+  'JavaScript',
+  'TypeScript',
+  'Python',
   'NodeJS',
   'Express',
+  'TailwindCSS',
+  'MongoDB',
   'HTML',
   'CSS',
-  'Git',
-  'Python',
   'SQL',
+  'Git',
 ]
 
 function Projects({ projects }) {
